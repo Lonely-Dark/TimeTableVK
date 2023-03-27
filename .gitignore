@@ -1,0 +1,11 @@
+# Ignore logs
+logs/
+
+# Ignore poetry.lock
+poetry.lock
+
+# Ignore config files
+.ini
+
+# Ignore images
+img/
