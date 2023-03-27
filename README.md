@@ -3,8 +3,10 @@
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+![GitHub repo size](https://img.shields.io/github/repo-size/Lonely-Dark/TimeTableVK?style=flat-square)
+![GitHub](https://img.shields.io/github/license/Lonely-Dark/TimeTableVK?style=flat-square)
 
-# Raspisanie_bot
+# TimeTableVK
 Raspisanie_bot is a Python-based project designed to help students at the Lyceum find out their class schedules for the next day or any other date. The project is built using the poetry package manager.
 
 ## Installation
