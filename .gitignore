@@ -9,3 +9,10 @@ poetry.lock
 
 # Ignore images
 img/
+
+# Ignore cache
+timeTableVk/__pycache__/
+timeTableVk/handlers/__pycache__/
+timeTableVk/keyboard/__pycache__/
+timeTableVk/middlewares/__pycache__/
+timeTableVk/utils/__pycache__/
