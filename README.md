@@ -11,12 +11,12 @@ Raspisanie_bot is a Python-based project designed to help students at the Lyceum
 Clone the repository:
 
 ```bash
-git clone https://github.com/domosedy/Raspisanie_bot.git -b stable_vk
+git clone https://github.com/Lonely-Dark/TimeTableVK
 ```
 Install the required dependencies:
 
 ```bash
-cd Raspisanie_bot
+cd TimeTableVK/timeTableVk
 poetry install
 ```
 
