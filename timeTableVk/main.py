@@ -5,6 +5,7 @@
 # Python 3.11
 
 import asyncio
+import os
 
 from loguru import logger
 from vkbottle import Bot
@@ -14,6 +15,10 @@ from handlers import labelers
 from middlewares import NoBotMiddleware
 
 logger.info("Starting...")
+
+if os.name == "posix":
+    import uvloop
+    uvloop.install()
 
 bot = Bot(api=api)
 
