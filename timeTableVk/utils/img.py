@@ -110,7 +110,7 @@ async def download_timetable(date: str, add_date=False, path="img/") -> bool:
     :return: bool
     """
 
-    url = f"https://амтэк35.рф/wp-content/uploads/shedule/2022-2023/{date}"
+    url = f"https://сдо.амтэк35.рф/shedule/{date}"
     if add_date is False:
         url += ".png"
         filename = f"rasp-{date}.png"
