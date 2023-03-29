@@ -5,13 +5,14 @@
 # Python 3.11
 
 from config import labeler
+from vkbottle.bot import Message
 from vkbottle.dispatch.rules.base import PayloadRule
 
 
 @labeler.message(PayloadRule({"action": "calls"}))
 @labeler.message(text="Звонки")
 @labeler.message(text="звонки")
-async def calls_labeler(message):
+async def calls_labeler(message: Message) -> None:
     text = """
     Расписание уроков и время:
     

@@ -9,10 +9,11 @@ import os
 from datetime import timedelta, datetime
 
 from config import labeler, api
-from utils.img import ImageCl, download_timetable
+from utils.img import ImageCl, download_full_timetable
 from vkbottle import PhotoMessageUploader
 from vkbottle.bot import Message
 from vkbottle.dispatch.rules.base import PayloadRule
+from keyboard.keyboard import MENU_KB
 
 
 # Shitcode
@@ -49,11 +50,22 @@ async def important_labeler(message: Message) -> None:
     # Check if timetable downloaded and check image cropped
     downloaded = await ImageCl.check_download_full_timetable(filename_rsp)
     if downloaded is False:
-        downloaded = await download_timetable(date=temp_date)
+        downloaded = await download_full_timetable(date=temp_date)
     if downloaded is False:
-        return await message.answer(
-            message="Что-то не так, скорее всего на этот день расписания нет. \n Если вы "
-                    "считаете нужным, свяжитесь с администратором: @lonely_dark")
+        for i in range(5):
+            date += timedelta(days=1)
+            temp_date = date.strftime("%d.%m.20%y")
+            filename_rsp = f"rasp-{temp_date}.png"
+            temp_filename = f"rasp-{temp_date}-{message.payload['class']}.png"
+
+            downloaded = await download_full_timetable(date=temp_date)
+            if downloaded is True:
+                await message.answer(message=f"На завтрашний день к сожалению расписания нет. Вот на {temp_date}:")
+                break
+        else:
+            return await message.answer(
+                message="Что-то не так, скорее всего на этот день расписания нет. \n Если вы "
+                        "считаете нужным, свяжитесь с администратором: @lonely_dark")
 
     checked_img = await ImageCl.check_cropped_image(temp_filename)
     if checked_img is False:

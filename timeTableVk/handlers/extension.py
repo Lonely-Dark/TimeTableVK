@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+
+# ---Lonely_Dark---
+# Python 3.11
+
 import os
 from datetime import datetime
 
@@ -8,19 +12,16 @@ from dateutil import relativedelta
 from keyboard.keyboard import MENU_KB
 from transliterate import translit
 from transliterate.base import registry
-from utils import ImageCl, download_timetable, LLanguagePack
+from utils import ImageCl, download_full_timetable, LLanguagePack
 from vkbottle.bot import Message
 from vkbottle.dispatch.rules.base import RegexRule
 from vkbottle.tools import PhotoMessageUploader
-
-# ---Lonely_Dark---
-# Python 3.11
 
 registry.register(LLanguagePack)
 
 
 @labeler.message(RegexRule(r'(\d\w \d\d$)|(\d\d\w \d\d$)'))
-async def extension_labeler(message: Message):
+async def extension_labeler(message: Message) -> None:
     """
     Extension for main func, get timetable with date
     :param message: message from user
@@ -54,7 +55,7 @@ async def extension_labeler(message: Message):
     downloaded = await ImageCl.check_download_full_timetable(
         f"rasp-{date}.png")
     if downloaded is False:
-        downloaded = await download_timetable(date=date)
+        downloaded = await download_full_timetable(date=date)
     if downloaded is False:
         return await message.answer(
             message="Что-то не так, скорее всего на этот день расписания нет. \n Если вы считаете нужным, свяжитесь с "

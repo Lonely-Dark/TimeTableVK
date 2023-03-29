@@ -20,7 +20,7 @@ COLUMNS = [57, 814, 1575, 2334, 3093]
 
 
 class ImageCl(object):
-    def __init__(self, filename: str, path="img/"):
+    def __init__(self, filename: str, path: str = "img/") -> None:
         """
         Work with timetable
         :param filename: is filename for timetable
@@ -69,7 +69,7 @@ class ImageCl(object):
 
     @staticmethod
     async def check_download_full_timetable(filename: str,
-                                            path="img/") -> bool:
+                                            path: str = "img/") -> bool:
         """
         Checking if the schedule has been downloaded for two hours ago
         :param filename: is a name for timetable
@@ -84,7 +84,7 @@ class ImageCl(object):
             return False
 
     @staticmethod
-    async def check_cropped_image(filename: str, path="img/") -> bool:
+    async def check_cropped_image(filename: str, path: str = "img/") -> bool:
         """
         Checking if the image has been cropped for two hours ago
         :param filename: is a name for image
@@ -93,45 +93,30 @@ class ImageCl(object):
         """
 
         spl = os.path.join(path, filename)
-        if os.path.isfile(spl) is True:
-            return time.time() - os.path.getmtime(spl) < 7200
-        else:
-            return False
+        logger.info(time.time() - os.path.getmtime(spl))
+        return time.time() - os.path.getmtime(spl) < 7200
 
 
-async def download_timetable(date: str, add_date=False, path="img/") -> bool:
+async def download_full_timetable(date: str, path: str = "img/") -> bool:
     """
-    Download timetable from timetable site
-    :param date: is a date to download
-    :param add_date: if add_date is False, this a full date, if True this isn't
-    full date, add to date month and year
-    :param path: this a path to save a full timetable
-    :return: bool
+    Download full timetable from lyceum
+    :param date: string, date to download
+    :param path: string, path to download
+    :return: boolean, True if successful, False otherwise
     """
 
-    url = f"https://сдо.амтэк35.рф/shedule/{date}"
-    if add_date is False:
-        url += ".png"
-        filename = f"rasp-{date}.png"
-    else:
-        url += datetime.now().strftime(".%m.20%y")
-        url += ".png"
+    url = f"https://сдо.амтэк35.рф/shedule/{date}.png"
+    filename = f"rasp-{date}.png"
 
-        filename = f"rasp-{date}"
-        filename += datetime.now().strftime(".%m.20%y")
-        filename += ".png"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            data = await response.read()
 
-    session = aiohttp.ClientSession()
-    async with session.get(url) as response:
-        data = (await response.read())
-        resp = response.status
+            if response.status == 404:
+                logger.critical(f"Error: 404 response from {url}")
+                return False
 
-    if resp == 404:
-        await session.close()
-        logger.critical(f"Error: 404 response from {url}")
-        return False
-    else:
-        await session.close()
-        async with async_open(os.path.join(path, filename), "wb") as b:
-            await b.write(data)
-        return True
+            async with async_open(os.path.join(path, filename), "wb") as f:
+                logger.info(f"Download full timetable from {url} complete")
+                await f.write(data)
+                return True

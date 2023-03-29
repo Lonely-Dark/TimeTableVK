@@ -4,5 +4,5 @@
 # ---Lonely_Dark---
 # Python 3.11
 
-from .img import ImageCl, download_timetable
+from .img import ImageCl, download_full_timetable
 from .lang_packet import LLanguagePack
