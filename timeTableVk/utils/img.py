@@ -92,9 +92,12 @@ class ImageCl(object):
         :return: bool
         """
 
-        spl = os.path.join(path, filename)
-        logger.info(time.time() - os.path.getmtime(spl))
-        return time.time() - os.path.getmtime(spl) < 7200
+        if os.path.isfile(os.path.join(path, filename)) is True:
+            spl = os.path.join(path, filename)
+            logger.info(time.time() - os.path.getmtime(spl))
+            return time.time() - os.path.getmtime(spl) < 7200
+        else:
+            return False
 
 
 async def download_full_timetable(date: str, path: str = "img/") -> bool:
