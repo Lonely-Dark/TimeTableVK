@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf8 -*-
+
+# ---Lonely_Dark---
+# Python 3.11
+
 from datetime import datetime, timedelta
 
 from config import labeler, api
@@ -11,7 +17,12 @@ from vkbottle.tools import PhotoMessageUploader
 @labeler.message(PayloadRule({"action": "timetable"}))
 @labeler.message(text="Расписание")
 @labeler.message(text="расписание")
-async def timetables_all_labeler(message: Message):
+async def timetables_all_labeler(message: Message) -> None:
+    """
+    Get all timetable for all classes
+    :param message: Message from user
+    :return: None
+    """
     # Get current date
     date = datetime.now()
     if datetime.today().weekday() == 5:

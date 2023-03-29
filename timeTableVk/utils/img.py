@@ -27,7 +27,6 @@ class ImageCl(object):
         :param path: this a path to filename
         """
 
-        # Set constants
         self.filename_image = filename
         self.path = path
         self.full_path_image = os.path.join(path, filename)
@@ -131,10 +130,8 @@ async def download_timetable(date: str, add_date=False, path="img/") -> bool:
         await session.close()
         logger.critical(f"Error: 404 response from {url}")
         return False
-
-    await session.close()
-
-    async with async_open(os.path.join(path, filename), "wb") as b:
-        await b.write(data)
-
-    return True
+    else:
+        await session.close()
+        async with async_open(os.path.join(path, filename), "wb") as b:
+            await b.write(data)
+        return True

@@ -16,15 +16,19 @@ from middlewares import NoBotMiddleware
 
 logger.info("Starting...")
 
+# uvloop integration
 if os.name == "posix":
     import uvloop
     uvloop.install()
 
 bot = Bot(api=api)
 
+# Load labelers
 for labelers in labelers:
     bot.labeler.load(labeler)
 
+# Load middlewares
 bot.labeler.message_view.register_middleware(NoBotMiddleware)
 
+# Run polling
 asyncio.run(bot.run_polling())

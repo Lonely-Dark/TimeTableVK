@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+
+# ---Lonely_Dark---
+# Python 3.11
+
 import json
 import os
 from datetime import timedelta, datetime
@@ -9,10 +13,6 @@ from utils.img import ImageCl, download_timetable
 from vkbottle import PhotoMessageUploader
 from vkbottle.bot import Message
 from vkbottle.dispatch.rules.base import PayloadRule
-
-
-# ---Lonely_Dark---
-# Python 3.11
 
 
 # Shitcode
@@ -26,7 +26,7 @@ from vkbottle.dispatch.rules.base import PayloadRule
         {'class': '9C'}) | PayloadRule({'class': '10A'}) | PayloadRule({'class': '10B'}) | PayloadRule(
         {'class': '10C'}) | PayloadRule({'class': '10D'}) | PayloadRule({'class': '11A'}) | PayloadRule(
         {'class': '11B'}) | PayloadRule({'class': '11C'}) | PayloadRule({'class': '11D'}))
-async def important_labeler(message: Message):
+async def important_labeler(message: Message) -> None:
     """
     Get a timetable for next day
     :param message: message from user
