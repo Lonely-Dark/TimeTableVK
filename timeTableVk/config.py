@@ -11,7 +11,7 @@ from configparser import ConfigParser
 from loguru import logger
 from vkbottle import API
 from vkbottle.bot import BotLabeler
-from vkbottle import CtxStorage
+from database.database_load import Database
 
 config = ConfigParser()
 config.read(os.path.join(os.getcwd(), '.ini'))
@@ -29,4 +29,4 @@ logger.add(sys.stderr,
            format="<green>[{time:YYYY-MM-DD at HH:mm:ss}]</green> <cyan>[{level}]</cyan>: <level>{message}</level>",
            level="DEBUG", colorize=True)
 
-ctx_storage = CtxStorage()
+db = Database()

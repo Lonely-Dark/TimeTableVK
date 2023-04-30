@@ -12,7 +12,7 @@ from vkbottle import Bot
 
 from config import labeler, api
 from handlers import labelers
-from middlewares import NoBotMiddleware
+from middlewares import NoBotMiddleware, DatabaseCheck
 
 logger.info("Starting...")
 
@@ -29,6 +29,7 @@ for labelers in labelers:
 
 # Load middlewares
 bot.labeler.message_view.register_middleware(NoBotMiddleware)
+bot.labeler.message_view.register_middleware(DatabaseCheck)
 
 # Run polling
 asyncio.run(bot.run_polling())

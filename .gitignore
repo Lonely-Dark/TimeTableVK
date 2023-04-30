@@ -6,6 +6,7 @@ poetry.lock
 
 # Ignore config files
 .ini
+db.json
 
 # Ignore images
 img/

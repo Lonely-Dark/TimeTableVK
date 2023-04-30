@@ -4,5 +4,4 @@
 # ---Lonely_Dark---
 # Python 3.11
 
-from .user_mid import NoBotMiddleware
-from .database_check import DatabaseCheck
+from .database_load import Database
