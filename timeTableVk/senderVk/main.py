@@ -25,7 +25,7 @@ async def _main(peer_id: int, api):
     date += timedelta(days=1)
     date = date.strftime("%d.%m.20%y")
 
-    await download_full_timetable(date):
+    await download_full_timetable(date)
 
     uploader = PhotoMessageUploader(api)
     source = os.path.join("img/", f"rasp-{date}.png")
