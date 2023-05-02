@@ -10,7 +10,7 @@ import random
 from configparser import ConfigParser
 
 import tinydb
-
+from loguru import logger
 
 from img import download_full_timetable
 from vkbottle import PhotoMessageUploader, API
@@ -45,7 +45,10 @@ async def main():
 
     for i in db:
         if i['allow_send'] is True:
-            await _main(i['peer_id'], api)
+            try:
+                await _main(i['peer_id'], api)
+            except Exception as e:
+                logger.error(e)
 
 if __name__ == "__main__":
     asyncio.run(main())
