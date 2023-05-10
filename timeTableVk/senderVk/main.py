@@ -53,4 +53,7 @@ async def main():
 
 if __name__ == "__main__":
     schedule.every().day.at("15:00").do(main)
-    asyncio.run(schedule.run_pending())
+
+    loop = asyncio.get_event_loop()
+    while True:
+        loop.run_until_complete(schedule.run_pending())
