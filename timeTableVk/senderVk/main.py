@@ -52,5 +52,5 @@ async def main():
                 logger.error(e)
 
 if __name__ == "__main__":
-    schedule.every().day.at("10:30").do(main())
+    schedule.every().day.at("15:00").do(main())
     asyncio.run(schedule.run_pending())
