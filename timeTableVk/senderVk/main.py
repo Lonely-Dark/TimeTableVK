@@ -15,6 +15,7 @@ from loguru import logger
 from img import download_full_timetable
 from vkbottle import PhotoMessageUploader, API
 from datetime import datetime, timedelta
+import aioschedule as schedule
 
 
 async def _main(peer_id: int, api):
@@ -51,4 +52,5 @@ async def main():
                 logger.error(e)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    schedule.every().day.at("10:30").do(main())
+    asyncio.run(schedule.run_pending())
