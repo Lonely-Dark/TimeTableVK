@@ -18,6 +18,7 @@ timeTableVk/keyboard/__pycache__/
 timeTableVk/middlewares/__pycache__/
 timeTableVk/utils/__pycache__/
 timeTableVk/database/__pycache__/
+timeTableVk/senderVk/__pycache__/
 
 # Ignore IDEA
 .idea
