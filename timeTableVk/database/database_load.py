@@ -9,8 +9,8 @@ class Database:
     def __init__(self, name='db.json'):
         self.db = TinyDB(os.path.join(os.getcwd(), name))
 
-    async def update(self, data):
-        return self.db.update(data)
+    async def update(self, data, query):
+        return self.db.update(data, query)
 
     async def remove(self, data):
         return self.db.remove(data)

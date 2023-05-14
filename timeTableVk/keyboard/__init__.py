@@ -12,3 +12,4 @@ from .keyboard import NINE_CLASSES_KB
 from .keyboard import SEVEN_CLASSES_KB
 from .keyboard import SIX_CLASSES_KB
 from .keyboard import TEN_CLASSES_KB
+from .keyboard import SENDER_KB

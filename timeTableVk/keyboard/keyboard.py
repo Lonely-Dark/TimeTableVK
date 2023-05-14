@@ -18,7 +18,7 @@ MENU_KB.add(Text("11-ые", {"command": "11_menu"}))
 MENU_KB.row()
 MENU_KB.add(Text("Звонки", {"action": "calls"}))
 MENU_KB.add(Text("Расписание", {"action": "timetable"}))
-MENU_KB.add(Text("Отписаться", {'action': 'unsubscribe'}))
+MENU_KB.add(Text("Рассылка", {"action": "sender"}))
 
 MENU_KB = MENU_KB.get_json()
 
@@ -89,3 +89,9 @@ ELEVEN_CLASSES_KB.row()
 ELEVEN_CLASSES_KB.add(Text("Назад", {"action": "back"}))
 
 ELEVEN_CLASSES_KB = ELEVEN_CLASSES_KB.get_json()
+
+SENDER_KB = Keyboard(inline=True)
+SENDER_KB.add(Text("Отписаться", {'action': 'unsubscribe'}))
+SENDER_KB.add(Text("Подписаться", {'action': 'subscribe'}))
+
+SENDER_KB = SENDER_KB.get_json()
