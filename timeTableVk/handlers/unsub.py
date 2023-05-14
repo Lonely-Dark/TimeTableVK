@@ -6,11 +6,11 @@
 
 from config import labeler
 from config import db
-from tinydb import where
+from tinydb import where, Query
 from vkbottle.dispatch.rules.base import PayloadRule
 
 
 @labeler.message(PayloadRule({'action': 'unsubscribe'}))
 async def unsub_labeler(message):
-    await db.update({'allow_send': False}, where('peer_id') == message.peer_id)
+    await db.update({'allow_send': False}, Query().peer_id == message.peer_id)
     await message.answer(message='Вы успешно отписались от рассылки!')
