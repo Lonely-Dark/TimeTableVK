@@ -18,6 +18,7 @@ MENU_KB.add(Text("11-ые", {"command": "11_menu"}))
 MENU_KB.row()
 MENU_KB.add(Text("Звонки", {"action": "calls"}))
 MENU_KB.add(Text("Расписание", {"action": "timetable"}))
+MENU_KB.add(Text("Отписаться", {'action': 'unsubscribe'}))
 
 MENU_KB = MENU_KB.get_json()
 
